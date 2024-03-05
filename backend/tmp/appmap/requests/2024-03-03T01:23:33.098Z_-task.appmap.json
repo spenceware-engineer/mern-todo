@@ -1,0 +1,194 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/task",
+        "request_method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "User-Agent": "PostmanRuntime/7.36.3",
+          "Accept": "*/*",
+          "Postman-Token": "7c841bef-6d2f-476e-92f3-06d82bf9ddc4",
+          "Host": "localhost:4000",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive",
+          "Content-Length": "90"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "title",
+          "class": "String",
+          "value": "'Task #473'"
+        },
+        {
+          "name": "description",
+          "class": "String",
+          "value": "'This is the 760 millionth created task.'"
+        }
+      ]
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "findOneAndUpdate",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection tasks]",
+        "object_id": 1
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 2,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "$setOnInsert",
+              "class": "Object",
+              "properties": [
+                {
+                  "name": "__v",
+                  "class": "Number"
+                },
+                {
+                  "name": "completed",
+                  "class": "Boolean"
+                }
+              ]
+            },
+            {
+              "name": "$set",
+              "class": "Object",
+              "properties": [
+                {
+                  "name": "description",
+                  "class": "String"
+                },
+                {
+                  "name": "title",
+                  "class": "String"
+                }
+              ]
+            }
+          ],
+          "value": "{\n  '$setOnInsert': { __v: 0, completed: false },\n  '$set': {\n    description: 'This is the 760 millionth created task.',\n    title: 'Task #473'\n  }\n}",
+          "object_id": 3,
+          "name": "update"
+        },
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "upsert",
+              "class": "Boolean"
+            },
+            {
+              "name": "returnDocument",
+              "class": "String"
+            },
+            {
+              "name": "returnOriginal",
+              "class": "Boolean"
+            }
+          ],
+          "value": "{ upsert: true, returnDocument: 'after', returnOriginal: false }",
+          "object_id": 4,
+          "name": "options"
+        }
+      ],
+      "defined_class": "tasks",
+      "lineno": 1,
+      "path": "mongodb/tasks"
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 3,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<Object>",
+        "value": "Promise {\n  {\n    _id: new ObjectId('65e3b2a1aed0bffecfa76be4'),\n    title: 'Task #473',\n    description: 'This is the 760 millionth created task.',\n    completed: false,\n    __v: 0\n  }\n}",
+        "object_id": 5
+      },
+      "elapsed": 0.04770850099157542
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 200,
+        "headers": {
+          "X-Powered-By": "Express",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Length": "187",
+          "Etag": "W/\"bb-130ZJY7+XA6UD6KtLEkXErFzURU\""
+        }
+      },
+      "id": 4,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.07384706102311611
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.17.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v21.6.2"
+    },
+    "app": "backend",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "POST /task (200) — 2024-03-03T01:23:33.098Z"
+  },
+  "classMap": [
+    {
+      "name": "mongodb",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "tasks",
+          "children": [
+            {
+              "type": "function",
+              "name": "findOneAndUpdate",
+              "static": false,
+              "location": "mongodb/tasks:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "POST /task"
+        }
+      ]
+    }
+  ]
+}

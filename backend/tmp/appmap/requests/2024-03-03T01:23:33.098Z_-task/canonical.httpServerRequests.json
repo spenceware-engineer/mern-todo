@@ -1,0 +1,7 @@
+[
+  {
+    "route": "POST /task",
+    "parameters": "(title,description)",
+    "status": 200
+  }
+]

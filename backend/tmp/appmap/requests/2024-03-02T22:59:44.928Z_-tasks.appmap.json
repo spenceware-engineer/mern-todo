@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/tasks",
+        "request_method": "GET",
+        "headers": {
+          "User-Agent": "PostmanRuntime/7.36.3",
+          "Accept": "*/*",
+          "Postman-Token": "921ce628-ab12-4750-b8f9-a20782b93dbe",
+          "Host": "localhost:4000",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "parent_id": 1
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.17.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v21.6.2"
+    },
+    "app": "backend",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "2024-03-02T22:59:44.928Z /tasks"
+  },
+  "classMap": [
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /tasks"
+        }
+      ]
+    }
+  ]
+}

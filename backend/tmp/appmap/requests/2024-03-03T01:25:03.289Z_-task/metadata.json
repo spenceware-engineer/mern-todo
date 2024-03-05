@@ -1,0 +1,18 @@
+{
+  "client": {
+    "name": "appmap-node",
+    "version": "2.17.0",
+    "url": "https://github.com/getappmap/appmap-node"
+  },
+  "language": {
+    "name": "javascript",
+    "engine": "Node.js",
+    "version": "v21.6.2"
+  },
+  "app": "backend",
+  "recorder": {
+    "type": "requests",
+    "name": "requests"
+  },
+  "name": "POST /task (200) — 2024-03-03T01:25:03.289Z"
+}

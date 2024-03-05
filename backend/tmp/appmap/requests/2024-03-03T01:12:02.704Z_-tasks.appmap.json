@@ -1,0 +1,145 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/tasks",
+        "request_method": "GET",
+        "headers": {
+          "Content-Type": "application/json",
+          "User-Agent": "PostmanRuntime/7.36.3",
+          "Accept": "*/*",
+          "Postman-Token": "366bf673-0866-490a-a0a2-067e147de1de",
+          "Host": "localhost:4000",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive",
+          "Content-Length": "80"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "title",
+          "class": "String",
+          "value": "'Task #1'"
+        },
+        {
+          "name": "description",
+          "class": "String",
+          "value": "'This is the first created task.'"
+        }
+      ]
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "find",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection tasks]",
+        "object_id": 1
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 2,
+          "name": "filter"
+        },
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 3,
+          "name": "options"
+        }
+      ],
+      "defined_class": "tasks",
+      "lineno": 1,
+      "path": "mongodb/tasks"
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 3,
+      "parent_id": 2,
+      "return_value": {
+        "class": "FindCursor",
+        "value": "[FindCursor test.tasks]",
+        "object_id": 4
+      },
+      "elapsed": 0.00038721296004951
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 200,
+        "headers": {
+          "X-Powered-By": "Express",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Length": "392",
+          "Etag": "W/\"188-lYAEtBwLl5tQLZXaXeOIcmj/d/c\""
+        }
+      },
+      "id": 4,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.06005717208608985
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.17.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v21.6.2"
+    },
+    "app": "backend",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "GET /tasks (200) — 2024-03-03T01:12:02.704Z"
+  },
+  "classMap": [
+    {
+      "name": "mongodb",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "tasks",
+          "children": [
+            {
+              "type": "function",
+              "name": "find",
+              "static": false,
+              "location": "mongodb/tasks:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /tasks"
+        }
+      ]
+    }
+  ]
+}

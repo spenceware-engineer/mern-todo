@@ -1,0 +1,166 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/tasks",
+        "request_method": "POST",
+        "headers": {
+          "Content-Type": "application/json",
+          "User-Agent": "PostmanRuntime/7.36.3",
+          "Accept": "*/*",
+          "Postman-Token": "c9e53923-884f-49b3-aa5c-ae2b5b834983",
+          "Host": "localhost:4000",
+          "Accept-Encoding": "gzip, deflate, br",
+          "Connection": "keep-alive",
+          "Content-Length": "80"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0,
+      "message": [
+        {
+          "name": "title",
+          "class": "String",
+          "value": "'Task #1'"
+        },
+        {
+          "name": "description",
+          "class": "String",
+          "value": "'This is the first created task.'"
+        }
+      ]
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "insertOne",
+      "static": false,
+      "receiver": {
+        "class": "Collection",
+        "value": "[Collection tasks]",
+        "object_id": 1
+      },
+      "parameters": [
+        {
+          "class": "Object",
+          "properties": [
+            {
+              "name": "title",
+              "class": "String"
+            },
+            {
+              "name": "description",
+              "class": "String"
+            },
+            {
+              "name": "completed",
+              "class": "Boolean"
+            },
+            {
+              "name": "_id",
+              "class": "ObjectId"
+            },
+            {
+              "name": "__v",
+              "class": "Number"
+            }
+          ],
+          "value": "{\n  title: 'Task #1',\n  description: 'This is the first created task.',\n  completed: false,\n  _id: ObjectId { [Symbol(id)]: [Buffer [Uint8Array]] },\n  __v: 0\n}",
+          "object_id": 2,
+          "name": "doc"
+        },
+        {
+          "class": "Object",
+          "properties": [],
+          "value": "{}",
+          "object_id": 3,
+          "name": "options"
+        }
+      ],
+      "defined_class": "tasks",
+      "lineno": 1,
+      "path": "mongodb/tasks"
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 3,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<Object>",
+        "value": "Promise {\n  {\n    acknowledged: true,\n    insertedId: new ObjectId('65e3b2a1aed0bffecfa76be4')\n  }\n}",
+        "object_id": 4
+      },
+      "elapsed": 0.06281181797385216
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 201,
+        "headers": {
+          "X-Powered-By": "Express",
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "text/plain; charset=utf-8",
+          "Content-Length": "7",
+          "Etag": "W/\"7-rM9AyJuqT6iOan/xHh+AW+7K/T8\""
+        }
+      },
+      "id": 4,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.1140923659550026
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.17.0",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v21.6.2"
+    },
+    "app": "backend",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "POST /tasks (201) — 2024-03-02T23:13:37.845Z"
+  },
+  "classMap": [
+    {
+      "name": "mongodb",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "tasks",
+          "children": [
+            {
+              "type": "function",
+              "name": "insertOne",
+              "static": false,
+              "location": "mongodb/tasks:1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "POST /tasks"
+        }
+      ]
+    }
+  ]
+}

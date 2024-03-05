@@ -1,0 +1,30 @@
+[
+  {
+    "name": "mongodb",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "tasks",
+        "children": [
+          {
+            "type": "function",
+            "name": "findOneAndUpdate",
+            "static": false,
+            "location": "mongodb/tasks:1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "POST /task"
+      }
+    ]
+  }
+]
