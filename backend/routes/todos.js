@@ -1,16 +1,17 @@
 const express = require('express')
-const router = express.Router()
+const Todo = require('../database/Todo')
 const Task = require('../database/Task')
 const { protect } = require('../middleware/authMiddleware')
 
+const router = express.Router()
 router.use(protect)
 
-router.get('/', async (_, res) => {
-  const { todoId } = req.body
+router.get('/', async (req, res) => {
+  const user = req.user
 
   try {
-    const tasks = await Task.find({ todoId })
-    return res.status(200).json(tasks)
+    const todos = await Todo.find({ userId: user._id })
+    return res.status(200).json(todos)
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: error.message })
@@ -23,8 +24,7 @@ router.post('/', async (req, res) => {
     id,
     title,
     description,
-    todoId
-  } = req.body // Extract 'id' and the rest of the data
+  } = req.body
 
   const options = {
     upsert: true,
@@ -33,16 +33,12 @@ router.post('/', async (req, res) => {
   }
 
   try {
-    const task = id ? (
-      await Task.findOneAndUpdate(
-        {
-          _id: id,
-          todoId,
-        },
+    const todo = id ? (
+      await Todo.findByIdAndUpdate(
+        id,
         {
           title,
           description,
-          todoId,
         },
         options
       )
@@ -50,11 +46,10 @@ router.post('/', async (req, res) => {
       await Task.create({
         title,
         description,
-        todoId,
         userId: user.id,
       })
     )
-    return res.status(200).json(task)
+    return res.status(200).json(todo)
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }
@@ -64,16 +59,16 @@ router.put('/:id/complete', async (req, res) => {
   const { id } = req.params
 
   try {
-    const findTask = await Task.findById(id)
-    if (!findTask) return res.status(404).json({ message: 'Task not found' })
+    const findTodo = await Todo.findById(id)
+    if (!findTodo) return res.status(404).json({ message: 'Todo not found' })
 
-    const task = await Task.findByIdAndUpdate(
+    const todo = await Todo.findByIdAndUpdate(
       id,
-      { completed: findTask.completed ? false : true },
+      { completed: findTodo.completed ? false : true },
       { new: true }
     )
 
-    return res.status(200).json(task)
+    return res.status(200).json(todo)
   } catch (error) {
     console.log(error)
     return res.status(500).json({ message: error.message })
@@ -84,8 +79,9 @@ router.delete('/:id', async (req, res) => {
   const { id } = req.params
 
   try {
-    await Task.findByIdAndDelete(id)
-    return res.status(200).json({ message: 'Task successfully deleted' })
+    await Task.deleteMany({ todoId: id })
+    await Todo.findByIdAndDelete(id)
+    return res.status(200).json({ message: 'Todo successfully deleted' })
   } catch (error) {
     return res.status(500).json({ message: error.message })
   }

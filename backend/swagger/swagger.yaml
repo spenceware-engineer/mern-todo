@@ -1,0 +1,327 @@
+openapi: 3.0.0
+info:
+  title: Planning API
+  version: 1.0.0
+  description: API for setting goals and breaking those goals down into simple tasks.
+tags:
+  - name: Authentication
+    description: Login and Sign Up
+  - name: Tasks
+    description: Task management
+  - name: Todos
+    description: Todo List management
+servers:
+  - url: http://localhost:4000
+paths:
+  /login:
+    post:
+      summary: Login User
+      description: Login User
+      tags: [ Authentication ]
+      requestBody:
+        $ref: ./components/auth-body.yaml
+      responses:
+        '200':
+          description: Successful login - return user and JWT
+          content:
+            application/json:
+              schema:
+                $ref: ./components/auth-user.yaml
+        '401':
+          description: Invalid Password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Invalid Password Error Message
+                example:
+                  message: Invalid password
+        '404':
+          description: User Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Useer Not Found Error Message
+                example:
+                  message: User not found
+  /signup:
+    post:
+      summary: Returns all tasks
+      tags: [ Authentication ]
+      responses:
+        '200':
+          description: A list of all tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./components/task.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+  /tasks:
+    get:
+      summary: Returns all tasks
+      tags: [ Tasks ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      responses:
+        '200':
+          description: A list of all tasks
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./components/task.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+    post:
+      summary: Upsert Task (Update task if it exists or create task if it does not)
+      tags: [ Tasks ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./components/task.yaml
+      responses:
+        '200':
+          description: Successfully updated or created Task
+          content:
+            application/json:
+              schema:
+                $ref: ./components/task.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /tasks/{id}/complete:
+    put:
+      summary: Change completion status of task (Mark as complete if incomplete or incomplete if complete)
+      tags: [ Tasks ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Task ID
+      responses:
+        '200':
+          description: Task completion status successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: ./components/task.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Task not found
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /tasks/{id}:
+    delete:
+      summary: Delete a task by it's ID
+      tags: [ Tasks ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Task ID
+      responses:
+        '200':
+          description: Success message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Task successfully deleted
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /todos:
+    get:
+      summary: Get List of User's Todo Lists
+      description: Login User
+      tags: [ Todos ]
+      requestBody:
+        $ref: ./components/auth-body.yaml
+      responses:
+        '200':
+          description: A list of the user's todo lists
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ./components/todo.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '500':
+          description: Server Error Message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    description: Server error message
+    post:
+      summary: Upsert Todo (Update todo if it exists or create todo if it does not)
+      tags: [ Todos ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: ./components/todo.yaml
+      responses:
+        '200':
+          description: Successfully updated or created Todo
+          content:
+            application/json:
+              schema:
+                $ref: ./components/todo.yaml'
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /todos/{id}/complete:
+    put:
+      summary: Change completion status of todo (Mark as complete if incomplete or incomplete if complete)
+      tags: [ Todos ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Todo ID
+      responses:
+        '200':
+          description: Todo completion status successfully changed
+          content:
+            application/json:
+              schema:
+                $ref: ./components/todo.yaml
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '404':
+          description: Task not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Todo not found
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+  /todos/{id}:
+    delete:
+      summary: Delete a todo by it's ID along with it's tasks
+      tags: [ Todos ]
+      security:
+        - $ref: ./components/bearer-auth.yaml
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+            required: true
+            description: Todo ID
+      responses:
+        '200':
+          description: Success message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: Todo successfully deleted
+        '401':
+          $ref: ./components/no-auth-res.yaml
+        '500':
+          description: Server error message
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string

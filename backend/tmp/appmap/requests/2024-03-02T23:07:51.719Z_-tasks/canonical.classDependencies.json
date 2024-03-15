@@ -1,6 +1,0 @@
-[
-  {
-    "caller": "GET /tasks",
-    "callee": "mongodb/tasks"
-  }
-]

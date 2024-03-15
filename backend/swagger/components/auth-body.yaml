@@ -1,0 +1,15 @@
+description: Email and Password for User Authentication
+content:
+  'application/json':
+    schema:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          description: User's email
+        password:
+          type: string
+          description: User's password

@@ -1,7 +1,0 @@
-[
-  {
-    "route": "GET /tasks",
-    "parameters": "()",
-    "status": 200
-  }
-]

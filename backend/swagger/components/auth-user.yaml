@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: string
+    description: User ID
+  email:
+    type: string
+    description: User Email
+  token:
+    type: string
+    description: Authenticated user JWT
+example:
+  id: 8f7ba5a2a13da4dca9b88c6e
+  email: test@example.com
+  token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY3Mjc2NjAyOCwiZXhwIjoxNjc0NDk0MDI4fQ.kCak9sLJr74frSRVQp0_27BY4iBCgQSmoT3vQVWKzJg

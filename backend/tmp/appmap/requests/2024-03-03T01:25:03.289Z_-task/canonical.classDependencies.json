@@ -1,6 +1,0 @@
-[
-  {
-    "caller": "POST /task",
-    "callee": "mongodb/tasks"
-  }
-]

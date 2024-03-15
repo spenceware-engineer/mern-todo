@@ -1,0 +1,29 @@
+type: object
+required:
+  - title
+properties:
+  _id:
+    type: string
+    description: Task ID
+  title:
+    type: string
+    description: Title of the task
+  description:
+    type: string
+    description: Description of the task
+  completed:
+    type: boolean
+    description: Completion indicator
+  userId:
+    type: string
+    description: User ID of list owner
+  todoId:
+    type: string
+    description: Task's Todo List ID
+example:
+  _id: 97113e1b64f0e366d3551bb6
+  title: Example Task
+  description: This is just an example task, but tasks are structured like this.
+  completed: false
+  userId: 0b718c24c5c9dc4d3ec518eb
+  todoId: c2dc05f39ca1d8d7d2b60b58

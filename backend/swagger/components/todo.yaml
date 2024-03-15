@@ -1,0 +1,25 @@
+type: object
+required:
+  - title
+properties:
+  _id:
+    type: string
+    description: TODO ID
+  title:
+    type: string
+    description: TODO Title
+  description:
+    type: string
+    description: Description of the TODO list
+  completed:
+    type: boolean
+    description: Completion indicator
+  userId:
+    type: string
+    description: User ID of list owner
+example:
+  _id: c2dc05f39ca1d8d7d2b60b58
+  title: My Example Todo List
+  description: This is my example todo list.
+  completed: false
+  userId: 0b718c24c5c9dc4d3ec518eb
